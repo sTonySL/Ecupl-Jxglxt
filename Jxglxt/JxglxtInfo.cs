@@ -54,7 +54,8 @@ namespace Jxglxt
             StudengTypeId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.studentType.id']/option").Attributes["value"].Value;
             IgnoreHead = Doc.DocumentNode.SelectSingleNode("//*[@name='ignoreHead']").Attributes["value"].Value;
             CalendarId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.id']").Attributes["value"].Value;
-
+            //获得得到课表内容的Get请求的Url
+            GetCourseUrl = Doc.DocumentNode.SelectSingleNode("//*[@id='contentListFrame']").Attributes["src"].Value.Trim();
 
             ///如果不传递PostData参数，则认为是第一次请求课程表，即获得最新的课程表
             if (PostData == null)
