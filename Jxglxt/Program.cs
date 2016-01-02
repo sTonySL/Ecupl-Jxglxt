@@ -29,10 +29,9 @@ namespace Jxglxt
             //发送Post请求，传递用户认证信息
             var aa = Http.LoginJxglxt(LoginPostUrl, LoginPostData);
 
-            var bb = js.GetMyEvaluation(Http);
-
-
+            var bb = js.GetMyCourse(Http);
 
             Http.Close();
         }
+    }
 }
