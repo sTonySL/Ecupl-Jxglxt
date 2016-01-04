@@ -24,12 +24,14 @@ namespace Jxglxt
             JxglxtRequest Http = new JxglxtRequest();
             JxglxtInfo js = new JxglxtInfo();
             CourseEntry Ce = new CourseEntry();
+            RoomEntry Re = new RoomEntry();
 
 
             //发送Post请求，传递用户认证信息
             var aa = Http.LoginJxglxt(LoginPostUrl, LoginPostData);
-
             var bb = js.GetMyCourse(Http);
+
+
 
             Http.Close();
         }
