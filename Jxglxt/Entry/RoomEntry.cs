@@ -8,18 +8,27 @@ namespace Jxglxt
 {
     class RoomEntry
     {
+
+        #region 非必要参数
+        ///// <summary>
+        ///// 未知
+        ///// </summary>
+        //public String StudentTypeId
+        //{
+        //    get; set;
+        //}
+
+        //public String OrderBy
+        //{
+        //    get; set;
+        //}
+        #endregion
+
+
         /// <summary>
         /// 学年的编号
         /// </summary>
         public String CalendarId
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// 未知
-        /// </summary>
-        public String StudentTypeId
         {
             get; set;
         }
@@ -57,7 +66,7 @@ namespace Jxglxt
         }
 
         /// <summary>
-        /// 
+        /// 校区
         /// </summary>
         public String SchoolDistrict
         {
@@ -65,32 +74,38 @@ namespace Jxglxt
         }
 
         /// <summary>
-        /// 
+        /// 教学楼
         /// </summary>
         public String BuildingId
         {
             get; set;
         }
 
+        /// <summary>
+        /// 院系所
+        /// </summary>
         public String DepartId
         {
             get; set;
         }
 
+        /// <summary>
+        /// 页数
+        /// </summary>
         public String PageNo
         {
             get; set;
         }
 
+        /// <summary>
+        /// 每页大小
+        /// </summary>
         public String PageSize
         {
             get; set;
         }
 
-        public String OrderBy
-        {
-            get; set;
-        }
+
 
 }
 }

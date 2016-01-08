@@ -21,17 +21,13 @@ namespace Jxglxt
             String CourseSearchPostUrl = "http://222.72.92.106/eams/teachTaskSearch.do?method=arrangeInfoList";
             String RoomSearchPostUrl = "http://222.72.92.106/eams/roomResource.do?method=search";
             String ContentType = "application/x-www-form-urlencoded";
-            JxglxtRequest Http = new JxglxtRequest();
-
-           
+            JxglxtRequest Http = new JxglxtRequest(); 
             CourseEntry Ce = new CourseEntry();
             RoomEntry Re = new RoomEntry();
-
-
             //发送Post请求，传递用户认证信息
             var aa = Http.LoginJxglxt(LoginPostUrl, LoginPostData);
-            JxglxtInfo js = new JxglxtInfo(Http);
-            var bb = js.GetMyCourse(Http);
+            String str = "pageNo=1&pageSize=1&calendar.id=341&calendar.studentType.id=5&calendar.term=1&task.seqNo=&task.course.code=&task.course.name=&task.courseType.name=&task.teachClass.depart.id=&task.arrangeInfo.teachDepart.id=&teacher.name=&teacher.department.id=&task.teachClass.enrollTurn=&task.teachClass.stdType.id=&courseActivity.time.week=&courseActivity.time.startUnit=";
+            var bb = Http.PostRequest("http://222.72.92.106/eams/teachTaskSearch.do?method=arrangeInfoList", str);
 
 
 

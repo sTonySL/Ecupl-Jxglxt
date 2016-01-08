@@ -9,6 +9,33 @@ namespace Jxglxt
     
     class CourseEntry
     {
+        #region 非必要参数
+        ///// <summary>
+        ///// 未知（值固定）
+        ///// </summary>
+        //public String OrderBy
+        //{
+        //    get; set;
+        //}
+
+        ///// <summary>
+        ///// 学年的代号（2015-2016学期用341表示）
+        ///// </summary>
+        //public String TaskCalendarId
+        //{
+        //    get; set;
+        //}
+
+        ///// <summary>
+        ///// 教学日历类别 “:teacher2 :day :units :weeks :room”
+        ///// 值固定
+        ///// </summary>
+        //public String ArrangeFormat
+        //{
+        //    get; set;
+        //}
+        #endregion
+
         /// <summary>
         /// 页数（第几页）
         /// </summary>
@@ -26,45 +53,20 @@ namespace Jxglxt
         }
 
         /// <summary>
-        /// 未知（值固定）
-        /// </summary>
-        public String OrderBy
-        {
-            get; set;
-        }
-
-        /// <summary>
         /// 学年的代号（2015-2016学期用341表示）
-        /// </summary>
-        public String TaskCalendarId
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// 教学日历类别 “:teacher2 :day :units :weeks :room”
-        /// 值固定
-        /// </summary>
-        public String ArrangeFormat
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// 同TaskCalendarId
         /// </summary>
         public String CalendarId
         {
             get; set;
         }
 
-        /// <summary>
-        /// 未知
-        /// </summary>
-        public String StudentTypeId
-        {
-            get; set;
-        }
+        ///// <summary>
+        ///// 未知
+        ///// </summary>
+        //public String StudentTypeId
+        //{
+        //    get; set;
+        //}
 
         /// <summary>
         /// 学期（1，2）

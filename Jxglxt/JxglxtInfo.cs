@@ -143,12 +143,12 @@ namespace Jxglxt
             StringBuilder PostData = new StringBuilder();
             PostData.Append(CourseInfo.PageNo);
             PostData.Append(CourseInfo.CalendarId);
-            PostData.Append(CourseInfo.ArrangeFormat);
+            //PostData.Append(CourseInfo.ArrangeFormat);
             PostData.Append(CourseInfo.CalendarTerm);
             PostData.Append(CourseInfo.PageSize);
-            PostData.Append(CourseInfo.StudentTypeId);
+            //PostData.Append(CourseInfo.StudentTypeId);
             PostData.Append(CourseInfo.TaskArrangeInfoId);
-            PostData.Append(CourseInfo.TaskCalendarId);
+            //PostData.Append(CourseInfo.TaskCalendarId);
             PostData.Append(CourseInfo.TaskCourseCode);
             PostData.Append(CourseInfo.TaskCourseName);
             PostData.Append(CourseInfo.TaskCourseTypeName);
@@ -179,13 +179,13 @@ namespace Jxglxt
             PostData.Append(RoomInfo.CalendarTerm);
             PostData.Append(RoomInfo.CalendarYear);
             PostData.Append(RoomInfo.DepartId);
-            PostData.Append(RoomInfo.OrderBy);
+            //PostData.Append(RoomInfo.OrderBy);
             PostData.Append(RoomInfo.PageNo);
             PostData.Append(RoomInfo.PageSize);
             PostData.Append(RoomInfo.RoomConfigType);
             PostData.Append(RoomInfo.RoomName);
             PostData.Append(RoomInfo.SchoolDistrict);
-            PostData.Append(RoomInfo.StudentTypeId);
+            //PostData.Append(RoomInfo.StudentTypeId);
 
             MyStream = new StreamReader(Http.PostRequest(QueryRoomUrl, PostData.ToString()));
             return MyStream.ReadToEnd();
