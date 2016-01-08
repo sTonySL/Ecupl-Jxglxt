@@ -16,26 +16,24 @@ namespace Jxglxt
         private String StudengTypeId = "";
         private String IgnoreHead = "";
         private String CalendarId = "";
-        //private String CalendarYear="";
-        //private String CalendarTerm="";
-        //private String StartWeek="1";
         private String GetCourseUrl = "";
         private String PostFrameUrl = "";
         private HtmlDocument Doc = new HtmlDocument();
         private StreamReader MyStream = null;
         #endregion
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public JxglxtInfo()
+        public JxglxtInfo(JxglxtRequest Http) 
         {
-            //StudengTypeId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.studentType.id']/option").Attributes["value"].Value;
-            //IgnoreHead = Doc.DocumentNode.SelectSingleNode("//*[@name='ignoreHead']").Attributes["value"].Value;
-            //CalendarId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.id']").Attributes["value"].Value;
-            //CalendarYear = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.year']/option").Attributes["value"].Value;
-            //CalendarTerm = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.term']/option").Attributes["value"].Value;
+            ///先发送一个Get请求获得相关参数
+            String GetFrameUrl = "http://222.72.92.106/eams/courseTableForStd.do?method=stdHome";
+            //发送Get请求，并用HtmlAgilityPack解析htm
+            Doc.LoadHtml(Http.GetRequest(GetFrameUrl));
+            StudengTypeId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.studentType.id']/option").Attributes["value"].Value;
+            IgnoreHead = Doc.DocumentNode.SelectSingleNode("//*[@name='ignoreHead']").Attributes["value"].Value;
+            CalendarId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.id']").Attributes["value"].Value;
         }
+
+
 
         /// <summary>
         /// 得到课表数据的方法，如果请求当前学期课表，则不需要传递PostData
@@ -56,6 +54,7 @@ namespace Jxglxt
             CalendarId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.id']").Attributes["value"].Value;
             //获得得到课表内容的Get请求的Url
             GetCourseUrl = Doc.DocumentNode.SelectSingleNode("//*[@id='contentListFrame']").Attributes["src"].Value.Trim();
+
 
             ///如果不传递PostData参数，则认为是第一次请求课程表，即获得最新的课程表
             if (PostData == null)

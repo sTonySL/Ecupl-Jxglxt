@@ -22,13 +22,15 @@ namespace Jxglxt
             String RoomSearchPostUrl = "http://222.72.92.106/eams/roomResource.do?method=search";
             String ContentType = "application/x-www-form-urlencoded";
             JxglxtRequest Http = new JxglxtRequest();
-            JxglxtInfo js = new JxglxtInfo();
+
+           
             CourseEntry Ce = new CourseEntry();
             RoomEntry Re = new RoomEntry();
 
 
             //发送Post请求，传递用户认证信息
             var aa = Http.LoginJxglxt(LoginPostUrl, LoginPostData);
+            JxglxtInfo js = new JxglxtInfo(Http);
             var bb = js.GetMyCourse(Http);
 
 
