@@ -60,13 +60,14 @@ namespace Jxglxt
             get; set;
         }
 
-        ///// <summary>
-        ///// 未知
-        ///// </summary>
-        //public String StudentTypeId
-        //{
-        //    get; set;
-        //}
+        /// <summary>
+        /// 学生类别（本科生=5，研究生未知）
+        /// </summary>
+        public String StudentTypeId
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// 学期（1，2）

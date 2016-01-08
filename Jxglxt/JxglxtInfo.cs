@@ -16,13 +16,20 @@ namespace Jxglxt
         private String StudengTypeId = "";
         private String IgnoreHead = "";
         private String CalendarId = "";
+        private String CalendarYear = "";
+        private String CalendarTerm = "";
+
         private String GetCourseUrl = "";
         private String PostFrameUrl = "";
         private HtmlDocument Doc = new HtmlDocument();
         private StreamReader MyStream = null;
         #endregion
 
-        public JxglxtInfo(JxglxtRequest Http) 
+        /// <summary>
+        /// 发送Get请求获得学年、学期、学生类别等参数值
+        /// </summary>
+        /// <param name="Http"></param>
+        private void GetYearInfo(JxglxtRequest Http) 
         {
             ///先发送一个Get请求获得相关参数
             String GetFrameUrl = "http://222.72.92.106/eams/courseTableForStd.do?method=stdHome";
@@ -31,9 +38,12 @@ namespace Jxglxt
             StudengTypeId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.studentType.id']/option").Attributes["value"].Value;
             IgnoreHead = Doc.DocumentNode.SelectSingleNode("//*[@name='ignoreHead']").Attributes["value"].Value;
             CalendarId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.id']").Attributes["value"].Value;
+            CalendarYear = Doc.DocumentNode.SelectSingleNode("//*[@id='year']/option").Attributes["value"].Value;
+            CalendarTerm = Doc.DocumentNode.SelectSingleNode("//*[@id='term']/option").Attributes["value"].Value;
+            //获得得到课表内容的Get请求的Url
+            GetCourseUrl = Doc.DocumentNode.SelectSingleNode("//*[@id='contentListFrame']").Attributes["src"].Value.Trim();
+
         }
-
-
 
         /// <summary>
         /// 得到课表数据的方法，如果请求当前学期课表，则不需要传递PostData
@@ -46,20 +56,12 @@ namespace Jxglxt
         public String GetMyCourse(JxglxtRequest Http, String PostData = null)
         {
             ///先发送一个Get请求获得相关参数
-            String GetFrameUrl = "http://222.72.92.106/eams/courseTableForStd.do?method=stdHome";
-            //发送Get请求，并用HtmlAgilityPack解析htm
-            Doc.LoadHtml(Http.GetRequest(GetFrameUrl));
-            StudengTypeId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.studentType.id']/option").Attributes["value"].Value;
-            IgnoreHead = Doc.DocumentNode.SelectSingleNode("//*[@name='ignoreHead']").Attributes["value"].Value;
-            CalendarId = Doc.DocumentNode.SelectSingleNode("//*[@name='calendar.id']").Attributes["value"].Value;
-            //获得得到课表内容的Get请求的Url
-            GetCourseUrl = Doc.DocumentNode.SelectSingleNode("//*[@id='contentListFrame']").Attributes["src"].Value.Trim();
-
+            GetYearInfo(Http);
 
             ///如果不传递PostData参数，则认为是第一次请求课程表，即获得最新的课程表
             if (PostData == null)
             {
-                //获得得到课表内容的Get请求的Url
+                //获得得到课表内容的Get请求的Url,Doc对象已经在GetYearInfo（）方法中赋值
                 GetCourseUrl = Doc.DocumentNode.SelectSingleNode("//*[@id='contentListFrame']").Attributes["src"].Value.Trim();
 
                 //发送Get请求，获得我的课程的数据。
@@ -146,7 +148,7 @@ namespace Jxglxt
             //PostData.Append(CourseInfo.ArrangeFormat);
             PostData.Append(CourseInfo.CalendarTerm);
             PostData.Append(CourseInfo.PageSize);
-            //PostData.Append(CourseInfo.StudentTypeId);
+            PostData.Append(CourseInfo.StudentTypeId);
             PostData.Append(CourseInfo.TaskArrangeInfoId);
             //PostData.Append(CourseInfo.TaskCalendarId);
             PostData.Append(CourseInfo.TaskCourseCode);
@@ -185,7 +187,7 @@ namespace Jxglxt
             PostData.Append(RoomInfo.RoomConfigType);
             PostData.Append(RoomInfo.RoomName);
             PostData.Append(RoomInfo.SchoolDistrict);
-            //PostData.Append(RoomInfo.StudentTypeId);
+            PostData.Append(RoomInfo.StudentTypeId);
 
             MyStream = new StreamReader(Http.PostRequest(QueryRoomUrl, PostData.ToString()));
             return MyStream.ReadToEnd();

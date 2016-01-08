@@ -10,20 +10,21 @@ namespace Jxglxt
     {
 
         #region 非必要参数
-        ///// <summary>
-        ///// 未知
-        ///// </summary>
-        //public String StudentTypeId
-        //{
-        //    get; set;
-        //}
-
+      
         //public String OrderBy
         //{
         //    get; set;
         //}
         #endregion
 
+        /// <summary>
+        /// 学生类别（本科生=5，研究生未知）
+        /// </summary>
+        public String StudentTypeId
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// 学年的编号

@@ -28,8 +28,9 @@ namespace Jxglxt
             var aa = Http.LoginJxglxt(LoginPostUrl, LoginPostData);
             String str = "pageNo=1&pageSize=1&calendar.id=341&calendar.studentType.id=5&calendar.term=1&task.seqNo=&task.course.code=&task.course.name=&task.courseType.name=&task.teachClass.depart.id=&task.arrangeInfo.teachDepart.id=&teacher.name=&teacher.department.id=&task.teachClass.enrollTurn=&task.teachClass.stdType.id=&courseActivity.time.week=&courseActivity.time.startUnit=";
             var bb = Http.PostRequest("http://222.72.92.106/eams/teachTaskSearch.do?method=arrangeInfoList", str);
-
-
+            var cc = Http.GetRequest("http://222.72.92.106/eams/courseTableForStd.do?method=stdHome");
+            JxglxtInfo Info = new JxglxtInfo();
+            var dd= Info.GetMyCourse(Http);
 
             Http.Close();
         }
